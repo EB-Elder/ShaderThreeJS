@@ -1,0 +1,23 @@
+{
+  "name": "shaderthreejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EB-Elder/ShaderThreeJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EB-Elder/ShaderThreeJS/issues"
+  },
+  "homepage": "https://github.com/EB-Elder/ShaderThreeJS#readme",
+  "dependencies": {
+    "live-server": "^1.2.1",
+    "three": "^0.120.1"
+  }
+}
