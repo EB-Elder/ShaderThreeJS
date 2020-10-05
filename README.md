@@ -2,4 +2,6 @@
 
 Ouvrir une console de commande situé dans le dossier cloné
 
-tapez npm live-server ./src/
+En ayant node et npm d'installer :
+
+tapez npx live-server ./src/
