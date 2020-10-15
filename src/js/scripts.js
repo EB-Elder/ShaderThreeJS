@@ -15,6 +15,10 @@ var origin = new THREE.Vector3(0, 0, 0);
 
 var uniforms;
 
+var getRandomNum = function(max){
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
 var initScene = function()
 {
     THREE.WebGLProgram
