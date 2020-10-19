@@ -15,20 +15,22 @@ var origin = new THREE.Vector3(0, 0, 0);
 
 var uniforms;
 
-var getRandomNum = function(max){
-    return Math.floor(Math.random() * Math.floor(max));
+var getRandomNumFloat = function(max){
+    return Math.floor(Math.random() * Math.floor(max))/10;
 }
 
 var initScene = function()
 {
-    THREE.WebGLProgram
+
+    
     //Initialisation de la scene
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
 
     uniforms = {
-        "time": {value: clock}
+        "time": {value: clock},
+        "randomVec3":{value: new THREE.Vector3(0.0, 0.0, 0.0)}
     }
     
     var shader = new THREE.ShaderMaterial({
@@ -37,8 +39,10 @@ var initScene = function()
         fragmentShader: document.getElementById("fragmentShader").textContent
         
         
-    })
-    var geometry = new THREE.BoxGeometry(10, 10, 10);
+    });
+
+    var wireframe = new THREE.MeshBasicMaterial({wireframe:true});
+    var geometry = new THREE.SphereGeometry(10, 10, 10);
     var cube = new THREE.Mesh(geometry, shader);
     scene.add(cube);
 }
@@ -46,12 +50,12 @@ var initScene = function()
 
 var update = function()
 {
-    
     camera.position.z = 20;
     scene.rotateX(Math.cos(clock)/200)
     scene.rotateZ(Math.sin(clock)/200)
     clock = performance.now()/2000;
     uniforms["time"].value = clock*50;
+    uniforms["randomVec3"].value = new THREE.Vector3(Math.cos(clock), Math.sin(clock), Math.cos(clock));
 };
 
 //Fonction qui va permettre de rendre la scene avec la camera voulu

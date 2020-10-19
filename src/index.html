@@ -18,21 +18,28 @@
     <script src="https://threejs.org/build/three.js"></script>
     <script id="vertexShader", type="x-shader/x-vertex">
       
-			varying vec2 vUv;
+      varying vec2 vUv;
+      varying vec3 vNormal;
+      uniform vec3 randomVec3;
+      varying vec3 newPos;
 
 			void main()
 			{
-				vUv = uv;
+        vUv = uv;
+        vNormal = normal;
+        newPos = vec3(position * randomVec3);
 				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
 				gl_Position = projectionMatrix * mvPosition;
 			}
     </script>
     <script id="fragmentShader", type="x-shader/x-fragment">
     
-
+      precision highp float;
+      
 			uniform float time;
 
-			varying vec2 vUv;
+      varying vec2 vUv;
+      varying vec3 vNormal;
 
 			void main( void ) {
 
@@ -41,7 +48,7 @@
 				float red = abs( sin( position.x * position.y + time / 5.0 ) );
 				float green = abs( sin( position.x * position.y + time / 4.0 ) );
 				float blue = abs( sin( position.x * position.y + time / 3.0 ) );
-				gl_FragColor = vec4( red, green, blue, 1.0 );
+				gl_FragColor = vec4( vNormal, 1.0 );
 
 			}
 
